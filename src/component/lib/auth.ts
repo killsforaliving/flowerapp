@@ -41,7 +41,7 @@ export const register = (user: Omit<UserWithPassword, 'id' | 'createdAt'>): User
   localStorage.setItem('users', JSON.stringify(users));
   
   // Return user without password
-  const { password, ...userWithoutPassword } = newUser;
+  const { password: _, ...userWithoutPassword } = newUser;
   return userWithoutPassword;
 };
 
@@ -52,7 +52,7 @@ export const login = (email: string, password: string): User | null => {
   
   if (user) {
     // Return user without password
-    const { password, ...userWithoutPassword } = user;
+    const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
   

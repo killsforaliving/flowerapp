@@ -58,8 +58,12 @@ export default function SignupForm() {
       setTimeout(() => {
         router.push('/profile');
       }, 1500);
-    } catch (err: any) {
-      setError(err.message || 'Failed to create account');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to create account');
+      }
     }
   };
   
